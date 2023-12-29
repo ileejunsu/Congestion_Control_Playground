@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Congestion Control Simulator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Network Congestion Control Simulator</h1>
+    </header>
+
+    <main class="main">
+        <div class="content-container">
+            <section id="controls" class="controls">
+                <h2>Select Algorithms and Parameters</h2>
+                <form id="parameters-form">
+                    <!-- Algorithm Selection -->
+                    <fieldset>
+                        <legend>Algorithms</legend>
+                        <label for="tahoe">Tahoe:</label>
+                        <input type="radio" id="tahoe" name="algorithm" value="Tahoe"><br>
+                        <label for="reno">Reno:</label>
+                        <input type="radio" id="reno" name="algorithm" value="Reno"><br>
+                        <label for="cubic">Cubic:</label>
+                        <input type="radio" id="cubic" name="algorithm" value="Cubic"><br>
+                        <label for="BICTCP">BICTCP:</label>
+                        <input type="radio" id="bictcp" name="algorithm" value="BICTCP"><br>
+                    </fieldset>
+            
+                    <!-- Parameter Inputs -->
+                    <fieldset>
+                        <legend>Parameters</legend>
+                        <div class="slider-container">
+                            <label for="cwnd">Congestion Window (cwnd):</label>
+                            <input type="range" id="cwnd" name="cwnd" min="1" max="200" value="1" step="1" oninput="updateValue('cwnd', this.value)">
+                            <span id="cwnd-value">1</span>
+                        </div>
+                    
+                        <div class="slider-container">
+                            <label for="ssthresh">Slow Start Threshold (ssthresh):</label>
+                            <input type="range" id="ssthresh" name="ssthresh" min="1" max="1000" value="1" step="1" oninput="updateValue('ssthresh', this.value)">
+                            <span id="ssthresh-value">1</span>
+                        </div>
+                    
+                        <div class="slider-container">
+                            <label for="rtt">Round-Trip Time (rtt):</label>
+                            <input type="range" id="rtt" name="rtt" min="0" max="500" value="200" step="1" oninput="updateValue('rtt', this.value)">
+                            <span id="rtt-value">200</span>
+                        </div>
+                    
+                        <div class="slider-container">
+                            <label for="mss">Max Segment Size (mss):</label>
+                            <input type="range" id="mss" name="mss" min="1" max="3000" value="1460" step="1" oninput="updateValue('mss', this.value)">
+                            <span id="mss-value">1460</span>
+                        </div>
+                    
+                        <div class="slider-container">
+                            <label for="rto">Retransmission Timeout (rto):</label>
+                            <input type="range" id="rto" name="rto" min="0" max="2000" value="1000" step="10" oninput="updateValue('rto', this.value)">
+                            <span id="rto-value">1000</span>
+                        </div>
+                    
+                        <div class="slider-container">
+                            <label for="duplicate_acks">Duplicate ACKs:</label>
+                            <input type="range" id="duplicate_acks" name="duplicate_acks" min="0" max="10" value="3" step="1" oninput="updateValue('duplicate_acks', this.value)">
+                            <span id="duplicate_acks-value">3</span>
+                        </div>
+                    
+                        <div class="slider-container">
+                            <label for="loss_rate">Loss Rate:</label>
+                            <input type="range" id="loss_rate" name="loss_rate" min="0" max="1" value="0.1" step="0.01" oninput="updateValue('loss_rate', this.value)">
+                            <span id="loss_rate-value">0.1</span>
+                        </div>
+                    
+                        <div class="slider-container">
+                            <label for="bandwidth">Bandwidth (in Mbps):</label>
+                            <input type="range" id="bandwidth" name="bandwidth" min="0" max="1000" value="100" step="10" oninput="updateValue('bandwidth', this.value)">
+                            <span id="bandwidth-value">100</span>
+                        </div>
+                    
+                        <div class="slider-container">
+                            <label for="queue_size">Queue Size (packets):</label>
+                            <input type="range" id="queue_size" name="queue_size" min="0" max="50" value="10" step="1" oninput="updateValue('queue_size', this.value)">
+                            <span id="queue_size-value">10</span>
+                        </div>
+                    </fieldset>
+                             
+                    <input type="submit" value="Apply Parameters">
+                </form>
+            </section>
+            
+            <section id="visualization-container" class="visualization-container">
+                <div class="chart-container">
+                    <h3>Packet Loss Events</h3>
+                    <canvas id="packetLossChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>State Transitions</h3>
+                    <canvas id="stateTransitionChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Bandwidth Utilization</h3>
+                    <canvas id="bandwidthUtilChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Queue Length</h3>
+                    <canvas id="queueLengthChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h3>Acknowledgments</h3>
+                    <canvas id="ackChart"></canvas>
+                </div>
+                <!-- Newly Added Chart Container for RTT Variation -->
+                <div class="chart-container">
+                    <h3>RTT Variation</h3>
+                    <canvas id="rttVariationChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Network Congestion Control Simulator</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+    <script>
+        // JavaScript function to update the value display
+        function updateValue(inputId, newValue) {
+            document.getElementById(inputId + '-value').textContent = newValue;
+        }
+    </script>
+</body>
+</html>

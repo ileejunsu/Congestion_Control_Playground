@@ -1,0 +1,150 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #00457c;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+footer {
+    background-color: #002244;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 20px;
+}
+
+.main {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.content-container {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.visualization-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Form and Control Styles */
+#parameters-form {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#parameters-form fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+#parameters-form legend {
+    font-weight: bold;
+    color: #00457c;
+}
+
+#parameters-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#parameters-form input[type='number'],
+#parameters-form input[type='radio'],
+#parameters-form input[type='range'],
+#parameters-form input[type='submit'] {
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+#parameters-form input[type='submit'] {
+    background-color: #00457c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+#parameters-form input[type='submit']:hover {
+    background-color: #003366;
+}
+
+/* Slider Styles for Range Inputs */
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.slider-container label {
+    flex-grow: 1;
+    flex-basis: 30%;
+}
+
+.slider-container input[type="range"] {
+    flex-grow: 2;
+    flex-basis: 60%;
+}
+
+.slider-container span {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    min-width: 50px;
+    text-align: center;
+}
+
+/* Chart Styles */
+.chart-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+canvas {
+    width: 100%;
+    height: auto;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 1024px) {
+    .content-container {
+        grid-template-columns: 1fr;
+    }
+
+    .visualization-container {
+        grid-template-columns: 1fr;
+    }
+}
